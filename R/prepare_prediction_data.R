@@ -24,5 +24,5 @@ prepare_prediction_data <- function(object, fc.data){
 		data_for_prediction <- fc.data
 	}
 	
-	return data_for_prediction
+	return(data_for_prediction)
 }
