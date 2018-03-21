@@ -1,10 +1,20 @@
+#' prepare_prediction_data
+#'
+#' @param object lassovar estimation object
+#' @param fc.data model data.frame
+#'
+#' @return model data.frame augmented with lag columns
+#'
+
 prepare_prediction_data <- function(object, fc.data){
 	
 	dd <- dim(as.matrix(fc.data))
 	
 	var_dim <- ifelse(1 %in% dd, nrow(coef(object)), nrow(coef(object))-1)
 	
-	fc.data <- cbind.data.frame(data.frame(date = 1:nrow(fc.data)), fc.data)
+	if(!(date %in% colnames(fc.data))){
+		fc.data <- cbind.data.frame(data.frame(date = 1:nrow(fc.data)), fc.data)	
+	}
 	
 	if(var_dim > ncol(fc.data)){
 		data_for_prediction <- fc.data %>% 
@@ -23,6 +33,10 @@ prepare_prediction_data <- function(object, fc.data){
 	} else {
 		data_for_prediction <- fc.data
 	}
+	
+	data_for_prediction <- data_for_prediction %>% 
+		tidyr::drop_na() %>% 
+		select(-date)
 	
 	return(data_for_prediction)
 }
