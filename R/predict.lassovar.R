@@ -11,7 +11,9 @@ function(object,fc.data,...)
 {
 	
 	dd <- dim(as.matrix(fc.data))
-
+	
+	fc.data <- prepare_prediction_data(object, fc.data)
+	
 	if(1%in%dd){
 		fc.fit	<-cbind(1,matrix(fc.data,nrow=1))%*%coef(object)
 		#names(fc.fit)<-object$var.names
