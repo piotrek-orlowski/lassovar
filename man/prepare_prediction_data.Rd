@@ -12,7 +12,7 @@ prepare_prediction_data(object, fc.data)
 \item{fc.data}{model data.frame}
 }
 \value{
-model data.frame augmented with lag columns
+data matrix augmented with lag columns
 }
 \description{
 prepare_prediction_data

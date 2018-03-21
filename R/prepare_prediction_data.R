@@ -3,7 +3,7 @@
 #' @param object lassovar estimation object
 #' @param fc.data model data.frame
 #'
-#' @return model data.frame augmented with lag columns
+#' @return data matrix augmented with lag columns
 #'
 
 prepare_prediction_data <- function(object, fc.data){
