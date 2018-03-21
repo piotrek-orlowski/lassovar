@@ -12,7 +12,7 @@ prepare_prediction_data <- function(object, fc.data){
 	
 	var_dim <- ifelse(1 %in% dd, nrow(coef(object)), nrow(coef(object))-1)
 	
-	if(!(date %in% colnames(fc.data))){
+	if(!("date" %in% colnames(fc.data))){
 		fc.data <- cbind.data.frame(data.frame(date = 1:nrow(fc.data)), fc.data)	
 	}
 	
@@ -36,7 +36,8 @@ prepare_prediction_data <- function(object, fc.data){
 	
 	data_for_prediction <- data_for_prediction %>% 
 		tidyr::drop_na() %>% 
-		select(-date)
+		select(-date) %>% 
+		as.matrix()
 	
 	return(data_for_prediction)
 }
