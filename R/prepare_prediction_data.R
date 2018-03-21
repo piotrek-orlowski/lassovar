@@ -35,7 +35,6 @@ prepare_prediction_data <- function(object, fc.data){
 	}
 	
 	data_for_prediction <- data_for_prediction %>% 
-		tidyr::drop_na() %>% 
 		select(-date) %>% 
 		as.matrix()
 	
